@@ -1,0 +1,25 @@
+﻿using HandyTaxApp.Data;
+using HandyTaxApp.Models;
+using HandyTaxApp.Repository.IRepository;
+
+namespace HandyTaxApp.Repository
+{
+    public class UnitOfWork : IUnitOfWork
+    {
+        private ApplicationDbContext _db;
+
+        public UnitOfWork(ApplicationDbContext db)
+        {
+            _db = db;
+
+            ActualNews = new ActualNewsRepository(_db);
+        }  
+        
+        public IActualNewsRepository ActualNews { get; private set; }
+
+        public void Save()
+        {
+            _db.SaveChanges();
+        }
+    }
+}

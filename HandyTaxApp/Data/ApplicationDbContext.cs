@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using HandyTaxApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace HandyTaxApp.Data
@@ -7,7 +8,9 @@ namespace HandyTaxApp.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        {
+        { 
         }
+
+        public DbSet<ActualNews> ActualNews { get; set; }
     }
 }
