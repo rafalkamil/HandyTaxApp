@@ -23,6 +23,31 @@ namespace HandyTaxApp.Controllers
             return View();
         }
 
+        public IActionResult Privacy_policy()
+        {
+            return View();
+        }
+
+        public IActionResult Agent_HMRC()
+        {
+            return View();
+        }
+
+        public IActionResult AML()
+        {
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Cookies()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
