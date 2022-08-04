@@ -65,8 +65,8 @@
     --bs-body-font-size: 1rem;
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.5;
-    --bs-body-color: #55595c;
-    --bs-body-bg: #fff;
+    --bs-body-color: #323232;
+    --bs-body-bg: #ebf4f7;
     --bs-border-width: 1px;
     --bs-border-style: solid;
     --bs-border-color: #eceeef;
@@ -12330,4 +12330,8 @@ th {
 .card .h5,
 .card .h6 {
     color: inherit;
+}
+
+.auto_height {
+    width: 100%;
 }

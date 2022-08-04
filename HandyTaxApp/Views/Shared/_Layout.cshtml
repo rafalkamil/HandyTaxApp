@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/css/BootswatchTheme.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/HandyTaxApp.styles.css" asp-append-version="true" />
+    
 </head>
 <body>
     <header>
@@ -39,11 +40,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
+            <a class="dropdown-item" asp-area="" asp-controller="ActualNews" asp-action="Index">Actual News</a>
           </div>
         </li>
       </ul>
@@ -60,12 +57,18 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container" style="width:100%">
             &copy; 2022 - HandyTaxApp - 
             <a asp-area="" asp-controller="Home" asp-action="Privacy">Noty prawne</a> - 
             <a asp-area="" asp-controller="Home" asp-action="About">O nas</a> - 
             <a asp-area="" asp-controller="Home" asp-action="Cookies">Cookies</a>
+            <div style="float:right">
+                <a href="#" style="padding:1px"><img src="/lib/bootstrap/icons/linkedin.svg" alt="Bootstrap" width="25" height="25"></a>
+                <a href="#" style="padding:1px"><img src="/lib/bootstrap/icons/twitter.svg" alt="Bootstrap" width="25" height="25"></a>
+                <a href="#" style="padding:1px"><img src="/lib/bootstrap/icons/facebook.svg" alt="Bootstrap" width="25" height="25"></a>
+            </div>
         </div>
+        
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

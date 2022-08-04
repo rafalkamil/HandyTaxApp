@@ -1,0 +1,35 @@
+﻿@model ActualNews;
+
+@{
+    ViewData["Title"] = "DeletePage";
+}
+
+<form method="post" asp-action="Delete" enctype="multipart/form-data">
+    <input asp-for="Id" hidden/>
+    <div class="border p-3 mt-4">
+        <h3 class="text-primary">Na pewno chcesz usunac wpis ?</h3>
+        <div class="row mb-3">
+            <label asp-for="Title">@Model.Title</label>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                   <button type="submit" class="btn btn-danger" style="width:100%">
+                   <img src="/lib/bootstrap/icons/trash.svg" alt="Bootstrap" width="20" height="20">Delete
+                   </button>     
+            </div>
+       </div>
+       <div class="row mb-3">
+            <div class="col-12">
+                <a asp-controller="ActualNews" asp-action="Index" class="btn btn-primary mx-2" style="width:100%">No, Take Me Back</a>
+            </div>
+       </div>
+    </div>
+</form>
+
+<script>
+    function auto_height(elem) {
+        elem.style.height = "1px";
+        elem.style.height = (elem.scrollHeight)+"px";
+    }
+</script>
+                
