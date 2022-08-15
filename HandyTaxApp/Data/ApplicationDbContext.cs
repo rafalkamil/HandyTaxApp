@@ -12,5 +12,6 @@ namespace HandyTaxApp.Data
         }
 
         public DbSet<ActualNews> ActualNews { get; set; }
+        public DbSet<BlogPost> BlogPosts { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model ActualNews;
+﻿@model BlogPost;
 
 @{
     ViewData["Title"] = "UpsertPage";
@@ -8,7 +8,7 @@
     <input asp-for="Id" hidden/>
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">@(Model.Id!=0?"Update Actual News":"Add Actual News to main page")</h2>
+            <h2 class="text-primary">@(Model.Id!=0?"Update Post":"Add New Post")</h2>
             <hr />
         </div>
         <div class="row mb-3">
@@ -28,7 +28,7 @@
             @if (Model.Id != 0)
             {
                 <div class="col-2">
-                <a asp-controller="ActualNews" asp-action="DeletePage" asp-route-id="@Model.Id" class="btn btn-danger mx-2">
+                <a asp-controller="BlogPost" asp-action="DeletePage" asp-route-id="@Model.Id" class="btn btn-danger mx-2">
                    <img src="/lib/bootstrap/icons/trash.svg" alt="Bootstrap" width="20" height="20">
                             Delete
                 </a>
@@ -37,7 +37,7 @@
        </div>
        <div class="row mb-3">
             <div class="col-12">
-                <a asp-controller="ActualNews" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>
+                <a asp-controller="BlogPost" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>
             </div>
        </div>
     </div>

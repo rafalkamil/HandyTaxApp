@@ -7,9 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.101.0">
 
-    
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <style> 
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -54,10 +51,10 @@
         -webkit-overflow-scrolling: touch;
       }
     </style>
-    <!-- Custom styles for this template -->
+
     <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="~/css/blog.csss" rel="stylesheet">
+
+    <link href="~/css/blog.css" rel="stylesheet">
   </head>
   <body>
 
@@ -71,7 +68,7 @@
         @foreach(var Object in Model)
         {
             <article class="blog-post">
-                <h3 class="blog-post-title mb-1">@Object.Title</h3>
+                <h4 class="blog-post-title mb-1">@Object.Title</h4>
                 <p class="blog-post-meta">@Object.Date by HandyTax</p>
                 <p>@Object.Text</p>
                 <hr>
