@@ -12,24 +12,21 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Handy Tax</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor02">
+  <div class="container-fluid flex-lg-wrap">
       <ul class="navbar-nav me-auto">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Handy Tax App</a>
         <li class="nav-item">
-          <a class="nav-link" asp-area="" asp-controller="Services" asp-action="Index">Usługi</a>
+          <a class="nav-link text-wrap" asp-area="" asp-controller="Invoice" asp-action="UpsertPage">Dodaj Koszt</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" asp-area="" asp-controller="Pricing" asp-action="Index">Cennik</a>
+          <a class="nav-link" asp-area="" asp-controller="" asp-action="Upsert">Wystaw Fakture</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" asp-area="" asp-controller="BlogPost" asp-action="Index">Blog</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Kontakt</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dokumenty</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" asp-area="" asp-controller="Invoice" asp-action="Index">Koszty</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Invoice" asp-action="Index">Faktury</a>
+          </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
@@ -38,13 +35,15 @@
             <a class="dropdown-item" asp-area="" asp-controller="BlogPost" asp-action="UpsertPage">New Blog Post</a>
           </div>
         </li>
+        <li>
+            <partial name="_LoginPartial" />
+        </li>
       </ul>
-      <partial name="_LoginPartial" />
-    </div>
+      
   </div>
-</nav>
-       
-    </header>
+</nav>  
+</header>
+
     <div class="container display:flex">
         <main role="main" class="pb-3">
             @RenderBody()

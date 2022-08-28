@@ -2,8 +2,8 @@
 
 namespace HandyTaxApp.Repository.IRepository
 {
-    public interface IBlogPostRepository : IRepository<BlogPost>
+    public interface IInvoiceRepository : IRepository<Invoice>
     {
-        void Update(BlogPost Object);
+        void Update(Invoice Object);
     }
 }

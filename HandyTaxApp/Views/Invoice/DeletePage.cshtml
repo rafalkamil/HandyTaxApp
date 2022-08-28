@@ -1,0 +1,60 @@
+﻿@model Invoice;
+
+@{
+    ViewData["Title"] = "DeletePage";
+}
+
+<form method="post" asp-action="Delete" enctype="multipart/form-data">
+    <input asp-for="Id" hidden/>
+    <input asp-for="ImageURL" hidden/>
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Usun fakture</h2>
+            <hr />
+        </div>
+        <div class="row mb-3"> 
+            <div class="col-6">
+                <label asp-for="InvoiceNumber">Faktura nr:  </label>
+                <a>@Model.InvoiceNumber ?</a>
+            </div>
+            <div class="col-6">
+                <label asp-for="InvoiceDate">Data wystawienia: </label>
+                <a>@Model.InvoiceDate</a>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                <label asp-for="InvoiceSum">Koszt Netto: </label>
+                <a>@Model.InvoiceSum</a>
+            </div>
+            <div class="col-6">
+                <label asp-for="InvoiceSumVat">Koszt VAT: </label>
+                <a>@Model.InvoiceSumVat</a>
+            </div>
+            
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-6">
+                <label asp-for="InvoiceDescription">Rodzaj kosztu: </label>
+                <a>@Model.InvoiceDescription</a>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                    <button type="submit" class="btn btn-danger" style="width:100%">
+                        <img src="/lib/bootstrap/icons/trash.svg" alt="Bootstrap" width="20" height="20">
+                            Usun
+                    </button>       
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <a asp-controller="Invoice" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+                

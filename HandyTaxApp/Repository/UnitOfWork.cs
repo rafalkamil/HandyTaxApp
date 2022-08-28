@@ -14,10 +14,12 @@ namespace HandyTaxApp.Repository
 
             ActualNews = new ActualNewsRepository(_db);
             BlogPosts = new BlogPostRepository(_db);
+            Invoices = new InvoiceRepository(_db);
         }  
         
         public IActualNewsRepository ActualNews { get; private set; }
         public IBlogPostRepository BlogPosts { get; private set; }
+        public IInvoiceRepository Invoices { get; private set; }
 
         public void Save()
         {

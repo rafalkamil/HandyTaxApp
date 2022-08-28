@@ -4,6 +4,7 @@ using HandyTaxApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HandyTaxApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220821094803_AddInvoicesTableToDb")]
+    partial class AddInvoicesTableToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,21 +81,7 @@ namespace HandyTaxApp.Migrations
                     b.Property<string>("ImageURL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("InvoiceContractor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InvoiceContractorAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InvoiceContractorPostalCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("InvoiceDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("InvoiceDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("InvoiceNumber")
@@ -102,8 +90,9 @@ namespace HandyTaxApp.Migrations
                     b.Property<int>("InvoiceSum")
                         .HasColumnType("int");
 
-                    b.Property<int>("InvoiceSumVat")
-                        .HasColumnType("int");
+                    b.Property<string>("InvoiceTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

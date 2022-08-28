@@ -49,10 +49,11 @@ namespace HandyTaxApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(Object.Id == 0)
-                {
-                    DateTime TodayDate = DateTime.Now;
-                    Object.Date = TodayDate;
+                DateTime TodayDate = DateTime.Now;
+                Object.Date = TodayDate;
+
+                if (Object.Id == 0)
+                {                   
                     _unitOfWork.ActualNews.Add(Object);
                 }
                 else

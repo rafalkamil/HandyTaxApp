@@ -49,16 +49,18 @@ namespace HandyTaxApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                DateTime TodayDate = DateTime.Now;
+                Object.Date = TodayDate;
+
                 if (Object.Id == 0)
                 {
-                    DateTime TodayDate = DateTime.Now;
-                    Object.Date = TodayDate;
                     _unitOfWork.BlogPosts.Add(Object);
                 }
                 else
                 {
                     _unitOfWork.BlogPosts.Update(Object);
                 }
+
                 _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
