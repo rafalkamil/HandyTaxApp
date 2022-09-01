@@ -1,0 +1,86 @@
+﻿@model OutcomeInvoice;
+
+@{
+    ViewData["Title"] = "DetailsPage";
+}
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <input asp-for="Id" hidden/>
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Faktura nr: @Model.InvoiceNumber</h2>
+            <hr />
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-6">
+                <label asp-for="Client">Klient</label>
+                <a>@Model.Client</a>
+            </div> 
+            <div class="col-6">
+                <label asp-for="ClientNumber">Numer klienta</label>
+                <a>@Model.ClientNumber</a>
+            </div> 
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-6">
+                <label asp-for="ClientPostalCode">Kod pocztowy</label>
+                <a>@Model.ClientPostalCode</a>
+            </div>
+            <div class="col-6">
+                <label asp-for="ClientAddress">Adres</label>
+                <a>@Model.ClientAddress</a>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-6">
+                <label asp-for="Date">Data</label>
+                <a>@Model.Date</a>
+            </div>
+            <div class="col-6">
+                <label asp-for="Description">Rodzaj kosztu</label>
+                <a>@Model.Description</a>
+            </div>
+        </div>
+        
+        <div class="row mb-3">          
+            <div class="col-6">
+                <label asp-for="UnitPrice">Cena jednostkowa</label>
+                <a>@Model.UnitPrice</a>
+            </div>
+            <div class="col-6">
+                <label asp-for="Quantity">Ilosc</label>
+                <a>@Model.Quantity</a>
+            </div>
+        </div>
+
+        <div class="row mb-3">          
+            <div class="col-6">
+                <label asp-for="TotalAmount">Calkowity koszt netto</label>
+                <a>@Model.TotalAmount</a>
+            </div>
+            <div class="col-6">
+                <label asp-for="TotalAmountVAT">Calkowity koszt VAT</label>
+                <a>@Model.TotalAmountVAT</a>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                    <a asp-controller="OutcomeInvoice" asp-action="UpsertPage" asp-route-id="@Model.Id" class="btn btn-primary mx-2" style="width:100%">
+                    <img src="/lib/bootstrap/icons/gear.svg" alt="Bootstrap" width="20" height="20">
+                            Edit
+                    </a>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <a asp-controller="OutcomeInvoice" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+                

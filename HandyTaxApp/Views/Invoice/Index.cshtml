@@ -1,43 +1,58 @@
-﻿@model IEnumerable<Invoice>;
-
-@{
-    ViewData["Title"] = "Index";
-}
-
+﻿
 <div class="container p-1">
     <div class="row pt-4">
         <h2 class="text-primary">Faktury (koszt)</h2>
     </div>
     <br/><br/>
-    <table class="table table-bordered table-striped" style="width:90%">
+    <table id="invoiceDataTable" class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
                 <th>NR faktury</th>
                 <th>Wystawiajacy</th>
                 <th>Koszt Netto</th>
                 <th>Data</th>
-                <th>Rodzaj kosztu</th>
+                <th>Rodzaj kosztu</th>  
                 <th></th>
             </tr>
         </thead>
-        <tbody>
-            @foreach(var Object in Model)
-            {
-                <tr>
-                    <th>@Object.InvoiceNumber</th>
-                    <th>@Object.InvoiceContractor</th>
-                    <th>@Object.InvoiceSum</th>
-                    <th>@Object.InvoiceDate</th>
-                    <th>@Object.InvoiceDescription</th>
-                    <th>
+    </table>
+</div>
+
+@section Scripts{
+    @*<script scr="~/js/invoice.js" asp-append-version="true"></script>*@
+
+    <script>
+        var dataTable;
+
+        $(document).ready(function () {
+            loadDataTable();
+        });
+
+        function loadDataTable() {
+            dataTable = $('#invoiceDataTable').DataTable({
+                "ajax": {
+                     "url":"/Invoice/GetAll"
+                },
+                "columns": [
+                { "data": "invoiceNumber", "width": "19%" },
+                { "data": "invoiceContractor", "width": "19%" },
+                { "data": "invoiceSum", "width": "19%" },
+                { "data": "invoiceDate", "width": "19%" },
+                { "data": "invoiceDescription", "width": "19%" },
+                { "data": "id",
+                  "render": function (data) {
+                    return `
                         <div class="w-30 btn-group" role="group">
-                            <a asp-controller="Invoice" asp-action="DetailsPage" asp-route-id="@Object.Id" class="btn btn-info mx-1">
+                            <a href="/Invoice/DetailsPage?id=${data}" class="btn btn-info mx-1">
                                 <img src="/lib/bootstrap/icons/arrow-right-square.svg" alt="Bootstrap" width="20" height="20">
                             </a>
                         </div>
-                    </th>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                    `
+                },
+                "width": "5%"
+                }
+                ]
+            });
+        }
+    </script>
+}

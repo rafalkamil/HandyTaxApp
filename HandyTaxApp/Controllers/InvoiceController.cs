@@ -15,9 +15,8 @@ namespace HandyTaxApp.Controllers
             _webHostEnvironment = webHostEnvironment;   
         }
         public IActionResult Index()
-        {
-            IEnumerable<Invoice> ObjectInvoiceList = _unitOfWork.Invoices.GetAll();
-            return View(ObjectInvoiceList);
+        {            
+            return View();
         }
 
         public IActionResult DetailsPage(int? Id)
@@ -50,8 +49,8 @@ namespace HandyTaxApp.Controllers
         public IActionResult Upsert(Invoice Object, IFormFile imgFile)
         {
 
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 string wwwwRootPath = _webHostEnvironment.WebRootPath;
 
                 if(imgFile != null)
@@ -90,8 +89,8 @@ namespace HandyTaxApp.Controllers
                 _unitOfWork.Save();
 
                 return RedirectToAction("Index");
-            //}
-            /*return RedirectToAction("Index")*/;
+            }
+            return RedirectToAction("Index");
         }
 
         public IActionResult DeletePage(int? Id)
@@ -118,5 +117,14 @@ namespace HandyTaxApp.Controllers
             _unitOfWork.Save();
             return RedirectToAction("Index");
         }
+
+        #region API
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var invoiceList = _unitOfWork.Invoices.GetAll();
+            return Json(new { data = invoiceList });
+        }
+        #endregion
     }
 }

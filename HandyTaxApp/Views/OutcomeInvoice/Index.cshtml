@@ -1,0 +1,59 @@
+﻿<div class="container p-1">
+    <div class="row pt-4">
+        <h2 class="text-primary">Wystawione Faktury</h2>
+    </div>
+    <br/><br/>
+    <table id="outcomeInvoiceDataTable" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Nr klienta</th>
+                <th>NR faktury</th>
+                <th>Klient</th>
+                <th>Koszt Netto</th>
+                <th>Data</th>
+                <th>Rodzaj kosztu</th>  
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{
+    @*<script scr="~/js/outcomeInvoice.js" asp-append-version="true"></script>*@
+
+    <script>
+        var dataTable;
+
+        $(document).ready(function () {
+            loadDataTable();
+        });
+
+        function loadDataTable() {
+            dataTable = $('#outcomeInvoiceDataTable').DataTable({
+                "ajax": {
+                     "url":"/OutcomeInvoice/GetAll"
+                },
+                "columns": [
+                { "data": "clientNumber", "width": "19%" },
+                { "data": "invoiceNumber", "width": "19%" },
+                { "data": "client", "width": "19%" },
+                { "data": "totalAmount", "width": "19%" },
+                { "data": "date", "width": "19%" },
+                { "data": "description", "width": "19%" },
+                { "data": "id",
+                  "render": function (data) {
+                    return `
+                        <div class="w-30 btn-group" role="group">
+                            <a href="/OutcomeInvoice/DetailsPage?id=${data}" class="btn btn-info mx-1">
+                                <img src="/lib/bootstrap/icons/arrow-right-square.svg" alt="Bootstrap" width="20" height="20">
+                            </a>
+                        </div>
+                    `
+                },
+                "width": "5%"
+                }
+                ]
+            });
+        }
+    </script>
+}
