@@ -1,6 +1,4 @@
-﻿@model IEnumerable<ActualNews>;
-
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -53,62 +51,36 @@
     </style>
 
     <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
-
     <link href="~/css/blog.css" rel="stylesheet">
   </head>
   <body>
 
 <main class="container">
     <br />
+
   <div class="row g-5">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><b>Handy Tax</b> - Polskie Biuro Ksiegowe w UK</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor02">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" asp-area="" asp-controller="Services" asp-action="Index">Usługi</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" asp-area="" asp-controller="Pricing" asp-action="Index">Cennik</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" asp-area="" asp-controller="BlogPost" asp-action="Index">Blog</a>
-        </li>
-      </ul>
+    <div class="col-12">
+        <a asp-controller="OutcomeInvoice" asp-action="UpsertPage" class="btn btn-info" style="width:100%">Wystaw fakture</a>
     </div>
   </div>
-</nav>
 
-    <div class="col-md-5 bg-light rounded p-2">
-        @foreach(var Object in Model)
-        {
-            <article class="blog-post">
-                <h4 class="blog-post-title mb-1">@Object.Title</h4>
-                <p class="blog-post-meta">@Object.Date by HandyTax</p>
-                <p>@Object.Text</p>
-                <hr>
-            </article>          
-        }
+  <br/>
+
+  <div class="row g-5">
+    <div class="col-12">
+        <a asp-controller="Invoice" asp-action="UpsertPage" class="btn btn-info" style="width:100%">Dodaj koszt</a>
     </div>
+  </div>
 
-    <div class="col-md-7">
-      <div class="position-sticky text-dark" style="top: 2rem;">
-        <div class="p-2 mb-3">
-          <p class="mb-2">Nasze Biuro przystąpiło do grona firm oferujących usługi za pośrednictwem globalnej sieci zgodnie z naszą misją   be handy – be eco.</p>
-          <p class="mb-2">Dzięki temu jesteśmy zawsze blisko naszych Klientów i minimalnie oddziałujemy na środowisko.</p>
-          <p class="mb-2">Obsługujemy Klientów z całej Wielkiej Brytanii a także z Polski, niezależnie od rodzaju prowadzonej działalności  – Self-employed lub Limited Company.</p>
-          <p class="mb-2">Ważne aby Firma była zarejestrowana w UK.</p>
-          <p class="mb-2">Każdą sprawę traktujemy bardzo indywidualnie starając się maksymalnie spełnić oczekiwania naszych Klientów.</p>
-          <p class="mb-2">Jako biuro internetowe nie mamy ograniczeń stacjonarnego biura księgowego – sztywnych godzin pracy, kolejek czy wyznaczonych terminów spotkań – a brak kosztów jego posiadania przekładają się na atrakcyjne ceny usług.</p>
-          <p class="mb-2">Jeśli nie chcesz tracić czasu i energii na wizyty w stacjonarnym biurze księgowym lub nie masz takiej możliwości albo chcesz skupić się na prowadzeniu własnej firmy to ta oferta jest dla Ciebie.</p>
-          <p class="mb-2">Zawsze w kilku prostych krokach możesz mieć załatwione prawie wszystkie księgowe sprawy bez wychodzenia z domu czy biura.</p>
-          <p class="mb-2">Masz pytania – napisz do nas</p>
-        </div>
-      </div>
+  <br/>
+
+  <div class="row g-5 border-3">
+    <div class="col-12">
+
+        <h3>Moje dokumenty</h3>
+        <a asp-controller="Invoice" asp-action="Index" class="btn btn-primary" style="width:100%">Moje faktury kosztowe</a>
+        <br/>
+        <a asp-controller="OutcomeInvoice" asp-action="Index" class="btn btn-primary" style="width:100%">Wystawione faktury</a>
     </div>
   </div>
 

@@ -18,8 +18,7 @@ namespace HandyTaxApp.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<ActualNews> ObjectActualNewsList = _unitOfWork.ActualNews.GetAll();
-            return View(ObjectActualNewsList);
+            return View();
         }
 
         public IActionResult Privacy()

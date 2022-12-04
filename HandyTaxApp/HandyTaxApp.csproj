@@ -8,6 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Contact\**" />
+    <Content Remove="Views\Contact\**" />
+    <EmbeddedResource Remove="Views\Contact\**" />
+    <None Remove="Views\Contact\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\ActualNews.cs" />
+    <Compile Remove="Models\BlogPost.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\js\invoice.js" />
   </ItemGroup>
 
@@ -25,10 +37,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.8" />
+    <PackageReference Include="Select.HtmlToPdf" Version="22.1.0" />
+    <PackageReference Include="Select.HtmlToPdf.NetCore" Version="22.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Contact\" />
     <Folder Include="wwwroot\costInvoiceImages\" />
   </ItemGroup>
 

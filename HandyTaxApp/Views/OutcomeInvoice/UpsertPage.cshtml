@@ -12,7 +12,7 @@
             <hr />
         </div>
         <div class="row mb-3">
-            <div class="col-6">
+            <div class="col-12">
                 <label asp-for="InvoiceNumber">Numer Faktury</label>
                 <input asp-for="InvoiceNumber" class="form-control"/>
                 <span asp-validation-for="InvoiceNumber" class="text-danger"></span>
@@ -20,12 +20,15 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-6">
+            <div class="col-12">
                 <label asp-for="Client">Klient</label>
                 <input asp-for="Client" class="form-control"/>
                 <span asp-validation-for="Client" class="text-danger"></span>
             </div> 
-            <div class="col-6">
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
                 <label asp-for="ClientNumber">Numer klienta</label>
                 <input asp-for="ClientNumber" class="form-control"/>
                 <span asp-validation-for="ClientNumber" class="text-danger"></span>
@@ -33,12 +36,15 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-6">
+            <div class="col-12">
                 <label asp-for="ClientPostalCode">Kod pocztowy</label>
                 <input asp-for="ClientPostalCode" class="form-control"/>
                 <span asp-validation-for="ClientPostalCode" class="text-danger"></span>
             </div>
-            <div class="col-6">
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
                 <label asp-for="ClientAddress">Adres</label>
                 <input asp-for="ClientAddress" class="form-control"/>
                 <span asp-validation-for="ClientAddress" class="text-danger"></span>
@@ -46,45 +52,54 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-6">
+            <div class="col-12">
                 <label asp-for="Date">Data</label>
                 <input asp-for="Date" class="form-control"/>
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
-            <div class="col-6">
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
                 <label asp-for="Description">Rodzaj kosztu</label>
-                <input asp-for="Description" class="form-control"/>
+                <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
         </div>
         
         <div class="row mb-3">          
-            <div class="col-6">
+            <div class="col-12">
                 <label asp-for="UnitPrice">Cena jednostkowa</label>
                 <input asp-for="UnitPrice" class="form-control"/>
                 <span asp-validation-for="UnitPrice" class="text-danger"></span>
             </div>
-            <div class="col-6">
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
                 <label asp-for="Quantity">Ilosc</label>
-                <input asp-for="Quantity" class="form-control"/>
+                <input asp-for="Quantity" class="form-control" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
         </div>
 
         <div class="row mb-3">
-            <div class="col-8">
+            <div class="col-12">
                 <button type="submit" class="btn btn-primary" style="width:100%">@(Model.Id!=0?"Update": "Create")</button>
             </div>
-            @if (Model.Id != 0)
-            {
-                <div class="col-2">
+            
+        </div>
+        @if (Model.Id != 0)
+        {
+            <div class="row mb-3">
+                <div class="col-12">
                     <a asp-controller="OutcomeInvoice" asp-action="DeletePage" asp-route-id="@Model.Id" class="btn btn-danger mx-2">
-                    <img src="/lib/bootstrap/icons/trash.svg" alt="Bootstrap" width="20" height="20">
-                            Delete
+                        <img src="/lib/bootstrap/icons/trash.svg" alt="Bootstrap" width="20" height="20">
+                     Delete
                     </a>
                 </div>
-            }
-        </div>
+            </div>
+        }
         <div class="row mb-3">
             <div class="col-12">
                 <a asp-controller="OutcomeInvoice" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>

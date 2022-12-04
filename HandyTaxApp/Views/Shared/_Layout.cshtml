@@ -12,38 +12,38 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid flex-lg-wrap">
-      <ul class="navbar-nav me-auto">
-        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Handy Tax App</a>
-        <li class="nav-item">
-          <a class="nav-link text-wrap" asp-area="" asp-controller="Invoice" asp-action="UpsertPage">Dodaj Koszt</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" asp-area="" asp-controller="OutcomeInvoice" asp-action="UpsertPage">Wystaw Fakture</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dokumenty</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" asp-area="" asp-controller="Invoice" asp-action="Index">Koszty</a>
-            <a class="dropdown-item" asp-area="" asp-controller="OutcomeInvoice" asp-action="Index">Faktury</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" asp-area="" asp-controller="ActualNews" asp-action="Index">Actual News</a>
-            <a class="dropdown-item" asp-area="" asp-controller="BlogPost" asp-action="UpsertPage">New Blog Post</a>
-          </div>
-        </li>
-        <li>
-            <partial name="_LoginPartial" />
-        </li>
-      </ul>
-      
-  </div>
-</nav>  
-</header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><h1>Handy Tax App</h1></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Moje dokumenty</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="" asp-controller="Invoice" asp-action="Index">Koszty</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="OutcomeInvoice" asp-action="Index">Faktury</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Formularze</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="" asp-controller="" asp-action="">SampleForm1</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="" asp-action="">SampleForm2</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="" asp-action="">SampleForm3</a>
+                            </div>
+                        </li>
+                        <li>
+                            <partial name="_LoginPartial" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </header>
 
     <div class="container display:flex">
         <main role="main" class="pb-3">
@@ -51,20 +51,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container" style="width:100%">
-            &copy; 2022 - HandyTaxApp - 
-            <a asp-area="" asp-controller="Home" asp-action="Privacy">Noty prawne</a> - 
-            <a asp-area="" asp-controller="Home" asp-action="About">O nas</a> - 
-            <a asp-area="" asp-controller="Home" asp-action="Cookies">Cookies</a>
-            <div style="float:right">
-                <a href="#" style="padding:1px"><img src="/lib/bootstrap/icons/linkedin.svg" alt="Bootstrap" width="25" height="25"></a>
-                <a href="#" style="padding:1px"><img src="/lib/bootstrap/icons/twitter.svg" alt="Bootstrap" width="25" height="25"></a>
-                <a href="#" style="padding:1px"><img src="/lib/bootstrap/icons/facebook.svg" alt="Bootstrap" width="25" height="25"></a>
-            </div>
-        </div>
-        
-    </footer>
+    
 
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
@@ -72,4 +59,22 @@
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
+<footer class="border-top footer text-muted">
+    <div class="container-fluid" style="width:100%">
+        &copy; 2022 - HandyTaxApp
+    </div>
+
+    <div class="container-fluid" style="width:100%">
+        <a href="#" style="padding:1px"><img src="/lib/bootstrap/icons/linkedin.svg" alt="Bootstrap" width="25" height="25"></a>
+        <a href="#" style="padding:1px"><img src="/lib/bootstrap/icons/twitter.svg" alt="Bootstrap" width="25" height="25"></a>
+        <a href="#" style="padding:1px"><img src="/lib/bootstrap/icons/facebook.svg" alt="Bootstrap" width="25" height="25"></a>
+        <a asp-area="" asp-controller="Home" asp-action="Privacy">Noty prawne</a> -
+        <a asp-area="" asp-controller="Home" asp-action="About">O nas</a> -
+        <a asp-area="" asp-controller="Home" asp-action="Cookies">Cookies</a>
+    </div>
+
+</footer>
+
+
 </html>

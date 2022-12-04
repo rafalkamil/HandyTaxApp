@@ -12,60 +12,73 @@
             <hr />
         </div>
         <div class="row mb-3">
-            <div class="col-6">
+            <div class="col-12">
                 <label asp-for="InvoiceNumber">Numer Faktury</label>
                 <input asp-for="InvoiceNumber" class="form-control"/>
                 <span asp-validation-for="InvoiceNumber" class="text-danger"></span>
             </div> 
-            <div class="col-6">
-            <label asp-for="InvoiceContractor">Wystawiajacy</label>
-            <input asp-for="InvoiceContractor" class="form-control"/>
-            <span asp-validation-for="InvoiceContractor" class="text-danger"></span>
-            </div>
         </div>
 
-        
+        <div class="row mb-3">
+            <div class="col-12">
+                <label asp-for="InvoiceContractor">Wystawiajacy</label>
+                <input asp-for="InvoiceContractor" class="form-control" />
+                <span asp-validation-for="InvoiceContractor" class="text-danger"></span>
+            </div>
+        </div>       
         
         <div class="row mb-3">
-            <div class="col-4">
+            <div class="col-12">
                 <label asp-for="InvoiceSum">Koszt Netto</label>
                 <input asp-for="InvoiceSum" class="form-control"/>
                 <span asp-validation-for="InvoiceSum" class="text-danger"></span>
             </div>
-            <div class="col-4">
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
                 <label asp-for="InvoiceSumVat">Koszt VAT</label>
-                <input asp-for="InvoiceSumVat" class="form-control"/>
+                <input asp-for="InvoiceSumVat" class="form-control" />
                 <span asp-validation-for="InvoiceSumVat" class="text-danger"></span>
             </div>
-            <div class="col-4">
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
                 <label asp-for="InvoiceDate">Data wystawienia</label>
-                <input asp-for="InvoiceDate" class="form-control"/>
+                <input asp-for="InvoiceDate" class="form-control" />
                 <span asp-validation-for="InvoiceDate" class="text-danger"></span>
             </div>
         </div>
 
         <div class="row mb-3">
-            <div class="col-6">
+            <div class="col-12">
                 <label asp-for="InvoiceDescription">Rodzaj kosztu</label>
                 <input asp-for="InvoiceDescription" class="form-control"/>
                 <span asp-validation-for="InvoiceDescription" class="text-danger"></span>
             </div>
-            <div class="col-6">
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
                 <label asp-for="ImageURL">Wstaw zdjecie</label>
-                <input type="file" id="uploadBox" name="imgFile" class="form-control"/>
+                <input type="file" id="uploadBox" name="imgFile" class="form-control" />
                 <span asp-validation-for="ImageURL" class="text-danger"></span>
             </div>
         </div>
 
         <div class="row mb-3">
-            <div class="col-6">
+            <div class="col-12">
                 <label asp-for="InvoiceContractorPostalCode">Kod pocztowy</label>
                 <input asp-for="InvoiceContractorPostalCode" class="form-control"/>
                 <span asp-validation-for="InvoiceContractorPostalCode" class="text-danger"></span>
             </div>
-            <div class="col-6">
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
                 <label asp-for="InvoiceContractorAddress">Adres Wystawiajacego</label>
-                <input asp-for="InvoiceContractorAddress" class="form-control"/>
+                <input asp-for="InvoiceContractorAddress" class="form-control" />
                 <span asp-validation-for="InvoiceContractorAddress" class="text-danger"></span>
             </div>
         </div>
@@ -77,25 +90,31 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-8">
+            <div class="col-12">
                 <button type="submit" class="btn btn-primary" style="width:100%">@(Model.Id!=0?"Update": "Create")</button>
-            </div>
-            @if (Model.Id != 0)
+            </div>            
+        </div>
+
+        @if (Model.Id != 0)
             {
-                <div class="col-2">
-                    <a asp-controller="Invoice" asp-action="DeletePage" asp-route-id="@Model.Id" class="btn btn-danger mx-2">
-                    <img src="/lib/bootstrap/icons/trash.svg" alt="Bootstrap" width="20" height="20">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <a asp-controller="Invoice" asp-action="DeletePage" asp-route-id="@Model.Id" class="btn btn-danger mx-2">
+                        <img src="/lib/bootstrap/icons/trash.svg" alt="Bootstrap" width="20" height="20">
                             Delete
-                    </a>
+                        </a>
+                    </div>
                 </div>
             }
-        </div>
+
         <div class="row mb-3">
             <div class="col-12">
                 <a asp-controller="Invoice" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>
             </div>
         </div>
+
     </div>
+
 </form>
 
                 

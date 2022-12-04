@@ -11,8 +11,6 @@ namespace HandyTaxApp.Data
         { 
         }
 
-        public DbSet<ActualNews> ActualNews { get; set; }
-        public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; } 
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<OutcomeInvoice> OutcomeInvoices { get; set; }
