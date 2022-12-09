@@ -2,13 +2,9 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a  class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-    </li>
-    <li class="nav-item">
+    <li class="nav-item d-flex align-items-center">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button  type="submit" class="nav-link btn btn-link">Wyloguj</button>
         </form>
@@ -16,8 +12,11 @@
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Zaloguj</a>
+    <li class="nav-item d-flex align-items-center" asp-area="Identity" asp-page="/Account/Login">
+        <div class="text-dark text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">login</i>            
+        </div>
+        <span class="nav-link-text ms-1">Zaloguj</span>
     </li>  
 }
-</ul>
+

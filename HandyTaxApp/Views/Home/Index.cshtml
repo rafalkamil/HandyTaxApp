@@ -1,89 +1,333 @@
-﻿<!doctype html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.101.0">
+<head>
 
-    <style> 
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-      media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="~/img/favicon.png">
+
+    <title>HandyTax App</title>
+
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Nucleo Icons -->
+    <link href="~/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="~/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS Files -->
+    <link id="pagestyle" href="~/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+
+</head>
+
+<body class="g-sidenav-show  bg-gray-100">
+
+    <main class="main-content border-radius-lg ">
+        <!-- Navbar -->
+
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+            <div class="container-fluid py-1 px-3">
+                <nav aria-label="breadcrumb">
+
+                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">HandyTax App</a></li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Pulpit</li>
+                    </ol>
+
+                </nav>
+                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                        <ul class="navbar-nav  justify-content-end">                            
+                            <li class="nav-item d-flex align-items-center">
+                                <partial name="_LoginPartial" />
+                            </li>
+                            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                                <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                                    <div class="sidenav-toggler-inner">
+                                        <i class="sidenav-toggler-line"></i>
+                                        <i class="sidenav-toggler-line"></i>
+                                        <i class="sidenav-toggler-line"></i>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </nav>
+
+        <!-- End Navbar -->
+
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-lg-7 position-relative z-index-2">
+                    <div class="card card-plain mb-4">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="d-flex flex-column h-100">
+                                        @if (SignInManager.IsSignedIn(User)){
+                                            <h2 class="font-weight-bolder mb-0">@User.Identity?.Name!</h2>
+                                        }
+                                        else {
+                                            <h4>Witaj użytkowniku</h4>
+                                        }                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-sm-5">
+                            <div class="card  mb-2">
+                                <div class="card-header p-3 pt-2">
+                                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-xl mt-n4 position-absolute">
+                                        <i class="material-icons opacity-10">description</i>
+                                    </div>
+                                    <div class="text-end pt-1">
+                                        <a class="btn btn-outline-info btn-sm mb-0 me-3" asp-controller="OutcomeInvoice" asp-action="UpsertPage">Wystaw fakture</a>
+                                    </div>
+                                </div>
+                                <hr class="dark horizontal my-0">
+                                <div class="card-footer p-3">
+                                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">Wystaw szybko fakture zawierajaca pojedyncza pozycje</p>
+                                </div>
+                            </div>
+
+                            <div class="card  mb-2">
+                                <div class="card-header p-3 pt-2">
+                                    <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary shadow text-center border-radius-xl mt-n4 position-absolute">                                        
+                                        <i class="material-icons opacity-10">receipt_long</i>
+                                    </div>
+                                    <div class="text-end pt-1">
+                                        <p class="text-sm mb-0 text-capitalize"><a class="btn btn-outline-primary btn-sm mb-0 me-3" asp-controller="Invoice" asp-action="UpsertPage">Dodaj koszt</a></p>
+                                    </div>
+                                </div>
+                                <hr class="dark horizontal my-0">
+                                <div class="card-footer p-3">
+                                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">Wprowadz pozycje z faktury kosztowej oraz zalacz jej zdjecie</p>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-10">
+                            <div class="card mb-4 ">
+                                <div class="d-flex">
+                                    <div class="icon icon-shape icon-lg bg-gradient-success shadow text-center border-radius-xl mt-n3 ms-4">
+                                        <i class="material-icons opacity-10" aria-hidden="true">savings</i>
+                                    </div>
+                                    <h6 class="mt-3 mb-2 ms-3 ">Ostatnio dodane koszty</h6>
+                                </div>
+                                <div class="card-body p-3">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-7">
+                                            <div class="table-responsive">
+                                                <table class="table align-items-center ">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="w-30">
+                                                                <div class="d-flex px-2 py-1 align-items-center">
+                                                                    <div>
+                                                                        <img src="./assets/img/icons/flags/US.png" alt="Country flag">
+                                                                    </div>
+                                                                    <div class="ms-4">
+                                                                        <p class="text-xs font-weight-bold mb-0 ">Country:</p>
+                                                                        <h6 class="text-sm font-weight-normal mb-0 ">United States</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="text-center">
+                                                                    <p class="text-xs font-weight-bold mb-0 ">Sales:</p>
+                                                                    <h6 class="text-sm font-weight-normal mb-0 ">2500</h6>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="text-center">
+                                                                    <p class="text-xs font-weight-bold mb-0 ">Value:</p>
+                                                                    <h6 class="text-sm font-weight-normal mb-0 ">$230,900</h6>
+                                                                </div>
+                                                            </td>
+                                                            <td class="align-middle text-sm">
+                                                                <div class="col text-center">
+                                                                    <p class="text-xs font-weight-bold mb-0 ">Bounce:</p>
+                                                                    <h6 class="text-sm font-weight-normal mb-0 ">29.9%</h6>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                       
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-5">
+                                            <div id="map" class="mt-0 mt-lg-n4"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-10">
+                            <div class="card mb-4 ">
+                                <div class="d-flex">
+                                    <div class="icon icon-shape icon-lg bg-gradient-info shadow text-center border-radius-xl mt-n3 ms-4">
+                                        <i class="material-icons opacity-10" aria-hidden="true">dvr</i>
+                                    </div>
+                                    <h6 class="mt-3 mb-2 ms-3 ">Ostatnio wystawione faktury</h6>
+                                </div>
+                                <div class="card-body p-3">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-7">
+                                            <div class="table-responsive">
+                                                <table class="table align-items-center ">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="w-30">
+                                                                <div class="d-flex px-2 py-1 align-items-center">
+                                                                    <div>
+                                                                        <img src="./assets/img/icons/flags/US.png" alt="Country flag">
+                                                                    </div>
+                                                                    <div class="ms-4">
+                                                                        <p class="text-xs font-weight-bold mb-0 ">Country:</p>
+                                                                        <h6 class="text-sm font-weight-normal mb-0 ">United States</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="text-center">
+                                                                    <p class="text-xs font-weight-bold mb-0 ">Sales:</p>
+                                                                    <h6 class="text-sm font-weight-normal mb-0 ">2500</h6>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="text-center">
+                                                                    <p class="text-xs font-weight-bold mb-0 ">Value:</p>
+                                                                    <h6 class="text-sm font-weight-normal mb-0 ">$230,900</h6>
+                                                                </div>
+                                                            </td>
+                                                            <td class="align-middle text-sm">
+                                                                <div class="col text-center">
+                                                                    <p class="text-xs font-weight-bold mb-0 ">Bounce:</p>
+                                                                    <h6 class="text-sm font-weight-normal mb-0 ">29.9%</h6>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-5">
+                                            <div id="map" class="mt-0 mt-lg-n4"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-lg-7">
+                    <div class="card z-index-2">
+                        <div class="card-header pb-0">
+                            <h6>Najczesciej uzywane formularze</h6>
+                            <p class="text-sm">
+                                <i class="fa fa-arrow-up text-success"></i>
+                                <span class="font-weight-bold">Formularz nr 1</span>
+                            </p>
+                            <p class="text-sm">
+                                <i class="fa fa-arrow-up text-success"></i>
+                                <span class="font-weight-bold">Formularz nr 1</span>
+                            </p>
+                            <p class="text-sm">
+                                <i class="fa fa-arrow-up text-success"></i>
+                                <span class="font-weight-bold">Formularz nr 1</span>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div id="globe" class="position-absolute end-0 top-10 mt-sm-3 mt-7 me-lg-7">
+                        <canvas width="700" height="600" class="w-lg-100 h-lg-100 w-75 h-75 me-lg-0 me-n10 mt-lg-5"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+            <footer class="footer py-4  ">
+                <div class="container-fluid">
+                    <div class="row align-items-center justify-content-lg-between">
+                        <div class="col-lg-6 mb-lg-0 mb-4">
+                            <div class="copyright text-center text-sm text-muted text-lg-start">
+                                © <script>
+                                      document.write(new Date().getFullYear())
+                                </script>,
+                                 Handy Tax
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                                <li class="nav-item">
+                                    <a asp-area="" asp-controller="Home" asp-action="Privacy_policy" class="nav-link text-muted" target="_blank">Polityka prywatności</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-area="" asp-controller="Home" asp-action="Cookies" class="nav-link text-muted" target="_blank">Cookies</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+
+    </main>
+
+    <!--   Core JS Files   -->
+    <script src="~/js/core/popper.min.js"></script>
+    <script src="~/js/core/bootstrap.min.js"></script>
+    <script src="~/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="~/js/plugins/smooth-scrollbar.min.js"></script>
+
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
-      }
+    </script>
 
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
-
-    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
-    <link href="~/css/blog.css" rel="stylesheet">
-  </head>
-  <body>
-
-<main class="container">
-    <br />
-
-  <div class="row g-5">
-    <div class="col-12">
-        <a asp-controller="OutcomeInvoice" asp-action="UpsertPage" class="btn btn-info" style="width:100%">Wystaw fakture</a>
-    </div>
-  </div>
-
-  <br/>
-
-  <div class="row g-5">
-    <div class="col-12">
-        <a asp-controller="Invoice" asp-action="UpsertPage" class="btn btn-info" style="width:100%">Dodaj koszt</a>
-    </div>
-  </div>
-
-  <br/>
-
-  <div class="row g-5 border-3">
-    <div class="col-12">
-
-        <h3>Moje dokumenty</h3>
-        <a asp-controller="Invoice" asp-action="Index" class="btn btn-primary" style="width:100%">Moje faktury kosztowe</a>
-        <br/>
-        <a asp-controller="OutcomeInvoice" asp-action="Index" class="btn btn-primary" style="width:100%">Wystawione faktury</a>
-    </div>
-  </div>
-
-</main>  
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="~/js/material-dashboard.min.js?v=3.0.4"></script>
 </body>
+
 </html>
