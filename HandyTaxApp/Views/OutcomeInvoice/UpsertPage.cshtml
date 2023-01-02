@@ -4,108 +4,143 @@
     ViewData["Title"] = "UpsertPage";
 }
 
-<form method="post" asp-action="Upsert" enctype="multipart/form-data">
-    <input asp-for="Id" hidden/>
-    <div class="border p-3 mt-4">
-        <div class="row pb-2">
-            <h2 class="text-primary">@(Model.Id!=0?"Update Invoice":"Add New Invoice")</h2>
-            <hr />
-        </div>
-        <div class="row mb-3">
-            <div class="col-12">
-                <label asp-for="InvoiceNumber">Numer Faktury</label>
-                <input asp-for="InvoiceNumber" class="form-control"/>
-                <span asp-validation-for="InvoiceNumber" class="text-danger"></span>
-            </div> 
-        </div>
+<!DOCTYPE html>
+<html lang="en">
 
-        <div class="row mb-3">
-            <div class="col-12">
-                <label asp-for="Client">Klient</label>
-                <input asp-for="Client" class="form-control"/>
-                <span asp-validation-for="Client" class="text-danger"></span>
-            </div> 
-        </div>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="~/img/favicon.png">
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <link href="~/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="~/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS Files -->
+    <link id="pagestyle" href="~/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+</head>
 
-        <div class="row mb-3">
-            <div class="col-12">
-                <label asp-for="ClientNumber">Numer klienta</label>
-                <input asp-for="ClientNumber" class="form-control"/>
-                <span asp-validation-for="ClientNumber" class="text-danger"></span>
-            </div> 
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-12">
-                <label asp-for="ClientPostalCode">Kod pocztowy</label>
-                <input asp-for="ClientPostalCode" class="form-control"/>
-                <span asp-validation-for="ClientPostalCode" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-12">
-                <label asp-for="ClientAddress">Adres</label>
-                <input asp-for="ClientAddress" class="form-control"/>
-                <span asp-validation-for="ClientAddress" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-12">
-                <label asp-for="Date">Data</label>
-                <input asp-for="Date" class="form-control"/>
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-12">
-                <label asp-for="Description">Rodzaj kosztu</label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-        </div>
-        
-        <div class="row mb-3">          
-            <div class="col-12">
-                <label asp-for="UnitPrice">Cena jednostkowa</label>
-                <input asp-for="UnitPrice" class="form-control"/>
-                <span asp-validation-for="UnitPrice" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-12">
-                <label asp-for="Quantity">Ilosc</label>
-                <input asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary" style="width:100%">@(Model.Id!=0?"Update": "Create")</button>
-            </div>
-            
-        </div>
-        @if (Model.Id != 0)
-        {
-            <div class="row mb-3">
-                <div class="col-12">
-                    <a asp-controller="OutcomeInvoice" asp-action="DeletePage" asp-route-id="@Model.Id" class="btn btn-danger mx-2">
-                        <img src="/lib/bootstrap/icons/trash.svg" alt="Bootstrap" width="20" height="20">
-                     Delete
-                    </a>
+<body class="bg-gray-200">
+    <main class="main-content  mt-0">
+        <div class="page-header align-items-start min-vh-80" style="background-color:white");">
+            <span class="mask bg-gradient-dark opacity-6"></span>
+            <div class="container my-auto">
+                <div class="row">
+                    <div class="col-lg-4 col-md-8 col-12 mx-auto">
+                        <div class="card z-index-0 fadeIn3 fadeInBottom">
+                            <div class="card-header p-3 position-relative mt-n4 mx-3 z-index-2">
+                                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                    <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">@(Model.Id != 0 ? "Zaktualizuj fakture" : "Wystaw nowa fakture")</h4>
+                                    <div class="row mt-3">
+                                        <div class="col-6 text-center ms-auto">
+                                            <a class="btn btn-link px-3" asp-controller="Home" asp-action="Index">
+                                                <i class="material-icons opacity-10 text-white">home</i>
+                                                <span class="text-white">Pulpit</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-6 text-center px-1">
+                                            <a class="btn btn-link px-3" asp-controller="OutcomeInvoice" asp-action="Index">
+                                                <i class="fa fa-arrow-up text-white"></i>
+                                                <span class="text-white">Lista faktur</span>
+                                            </a>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form role="form" class="text-start" method="post" asp-action="Upsert" enctype="multipart/form-data">
+                                    <input asp-for="Id" hidden />
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">Numer faktury</label>
+                                        <input asp-for="InvoiceNumber" class="form-control">
+                                        <span asp-validation-for="InvoiceNumber" class="text-danger"></span>
+                                    </div>
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">Klient</label>
+                                        <input asp-for="Client" class="form-control">
+                                        <span asp-validation-for="Client" class="text-danger"></span>
+                                    </div>
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">Numer klienta</label>
+                                        <input asp-for="ClientNumber" class="form-control">
+                                        <span asp-validation-for="ClientNumber" class="text-danger"></span>
+                                    </div>
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">Kod pocztowy klienta</label>
+                                        <input asp-for="ClientPostalCode" class="form-control">
+                                        <span asp-validation-for="ClientPostalCode" class="text-danger"></span>
+                                    </div>
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">Adres klienta</label>
+                                        <input asp-for="ClientAddress" class="form-control">
+                                        <span asp-validation-for="ClientAddress" class="text-danger"></span>
+                                    </div>
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">Data wystawienia</label>
+                                        <input asp-for="Date" class="form-control" value="null">
+                                        <span asp-validation-for="Date" class="text-danger"></span>
+                                    </div>
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">Nazwa ulugi/towaru</label>
+                                        <input asp-for="Description" class="form-control">
+                                        <span asp-validation-for="Description" class="text-danger"></span>
+                                    </div>
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">Cena jednostkowa</label>
+                                        <input asp-for="UnitPrice" class="form-control" value="null">
+                                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
+                                    </div>
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">Ilosc</label>
+                                        <input asp-for="Quantity" class="form-control" value="null">
+                                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">@(Model.Id != 0 ? "Update" : "Create")</button>
+                                    </div>
+                                    @if (Model.Id != 0)
+                                    {
+                                            <div class="text-center">
+                                                <a asp-controller="OutcomeInvoice" asp-action="DeletePage" asp-route-id="@Model.Id" class="btn bg-gradient-primary w-100 my-4 mb-2">
+                                                    <img src="/lib/bootstrap/icons/trash.svg" alt="Bootstrap" width="20" height="20">
+                                                    Delete
+                                                </a>
+                                            </div>
+                                    }
+                                    <div class="text-center">
+                                            <a asp-controller="Home" asp-action="Index" class="btn bg-gradient-primary w-100 my-4 mb-2">Take Me Back</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        }
-        <div class="row mb-3">
-            <div class="col-12">
-                <a asp-controller="OutcomeInvoice" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>
-            </div>
+            </div>            
         </div>
-    </div>
-</form>
+    </main>
 
+    <!--   Core JS Files   -->
+    <script src="~/js/core/popper.min.js"></script>
+    <script src="~/js/core/bootstrap.min.js"></script>
+    <script src="~/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="~/js/plugins/smooth-scrollbar.min.js"></script>
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="~/js/material-dashboard.min.js?v=3.0.4"></script>
+</body>
+</html>
                 

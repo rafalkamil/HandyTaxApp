@@ -13,8 +13,9 @@ namespace HandyTaxApp.Controllers
             _unitOfWork = unitOfWork;   
         }
         public IActionResult Index()
-        {            
-            return View();
+        {
+            IEnumerable<OutcomeInvoice> ObjectOutcomeInvoiceList = _unitOfWork.OutcomeInvoices.GetAll();
+            return View(ObjectOutcomeInvoiceList);
         }
 
         public IActionResult DetailsPage(int? Id)
@@ -83,14 +84,5 @@ namespace HandyTaxApp.Controllers
             _unitOfWork.Save();
             return RedirectToAction("Index");
         }
-
-        #region API
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var outcomeinvoiceList = _unitOfWork.OutcomeInvoices.GetAll();
-            return Json(new { data = outcomeinvoiceList });
-        }
-        #endregion
     }
 }

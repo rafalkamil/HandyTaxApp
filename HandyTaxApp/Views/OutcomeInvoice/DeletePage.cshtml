@@ -1,4 +1,4 @@
-﻿@model Invoice;
+﻿@model OutcomeInvoice;
 
 @{
     ViewData["Title"] = "DeletePage";
@@ -6,38 +6,63 @@
 
 <form method="post" asp-action="Delete" enctype="multipart/form-data">
     <input asp-for="Id" hidden/>
-    <input asp-for="ImageURL" hidden/>
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Usun fakture</h2>
+            <h2 class="text-primary">Usun fakture nr: @Model.InvoiceNumber</h2>
             <hr />
-        </div>
-        <div class="row mb-3"> 
-            <div class="col-6">
-                <label asp-for="InvoiceNumber">Faktura nr:  </label>
-                <a>@Model.InvoiceNumber ?</a>
-            </div>
-            <div class="col-6">
-                <label asp-for="InvoiceDate">Data wystawienia: </label>
-                <a>@Model.InvoiceDate</a>
-            </div>
         </div>
         <div class="row mb-3">
             <div class="col-6">
-                <label asp-for="InvoiceSum">Koszt Netto: </label>
-                <a>@Model.InvoiceSum</a>
+                <label asp-for="Client">Klient</label>
+                <a>@Model.Client</a>
             </div>
             <div class="col-6">
-                <label asp-for="InvoiceSumVat">Koszt VAT: </label>
-                <a>@Model.InvoiceSumVat</a>
+                <label asp-for="ClientNumber">Numer klienta</label>
+                <a>@Model.ClientNumber</a>
             </div>
-            
         </div>
 
         <div class="row mb-3">
             <div class="col-6">
-                <label asp-for="InvoiceDescription">Rodzaj kosztu: </label>
-                <a>@Model.InvoiceDescription</a>
+                <label asp-for="ClientPostalCode">Kod pocztowy</label>
+                <a>@Model.ClientPostalCode</a>
+            </div>
+            <div class="col-6">
+                <label asp-for="ClientAddress">Adres</label>
+                <a>@Model.ClientAddress</a>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-6">
+                <label asp-for="Date">Data</label>
+                <a>@Model.Date</a>
+            </div>
+            <div class="col-6">
+                <label asp-for="Description">Rodzaj kosztu</label>
+                <a>@Model.Description</a>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-6">
+                <label asp-for="UnitPrice">Cena jednostkowa</label>
+                <a>@Model.UnitPrice</a>
+            </div>
+            <div class="col-6">
+                <label asp-for="Quantity">Ilosc</label>
+                <a>@Model.Quantity</a>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-6">
+                <label asp-for="TotalAmount">Calkowity koszt netto</label>
+                <a>@Model.TotalAmount</a>
+            </div>
+            <div class="col-6">
+                <label asp-for="TotalAmountVAT">Calkowity koszt VAT</label>
+                <a>@Model.TotalAmountVAT</a>
             </div>
         </div>
 
@@ -51,7 +76,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-12">
-                <a asp-controller="Invoice" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>
+                <a asp-controller="OutcomeInvoice" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>
             </div>
         </div>
     </div>
