@@ -4,80 +4,139 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="~/img/favicon.png">
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Nucleo Icons -->
+    <link href="~/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="~/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS Files -->
+    <link id="pagestyle" href="(~/~/~/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+</head>
+
+<body class="">
+    
+    <main class="main-content  mt-0">
+        <section>
+            <div class="page-header min-vh-100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+                            <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url(~/~/~/img/illustrations/illustration-signup.jpg'); background-size: cover;">
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
+                            <div class="card card-plain">
+                                <div class="card-header">
+                                    <h4 class="font-weight-bolder">Zarejestruj sie</h4>
+                                    <p class="mb-0">Podaj email oraz ustaw hasło</p>
+                                </div>
+                                <div class="card-body">
+                                    <form role="form" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                        <div class="input-group input-group-outline mb-3">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true">
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+                                            <label class="form-label">Hasło</label>
+                                            <input type="password" asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true">
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+                                            <label class="form-label">Powtórz hasło</label>
+                                            <input type="password" asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true">
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+                                            <label class="form-label">Imię</label>
+                                            <input type="text" class="form-control" asp-for="Input.FirstName" autocomplete="username" aria-required="true">
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+                                            <label class="form-label">Nazwisko</label>
+                                            <input type="text" class="form-control" asp-for="Input.LastName" autocomplete="username" aria-required="true">
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+                                            <label class="form-label">Ulica</label>
+                                            <input type="text" class="form-control" asp-for="Input.StreetAddress" aria-required="true">
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+                                            <label class="form-label">Miasto</label>
+                                            <input type="text" class="form-control" asp-for="Input.City" aria-required="true">
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+                                            <label class="form-label">Kod pocztowy</label>
+                                            <input type="text" class="form-control" asp-for="Input.PostalCode" aria-required="true">
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+                                            <label class="form-label">Nazwa firmy</label>
+                                            <input type="text" class="form-control" asp-for="Input.CompanyName" aria-required="true">
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+                                            <label class="form-label">Telefon</label>
+                                            <input type="text" class="form-control" asp-for="Input.PhoneNumber" aria-required="true">
+                                        </div>
+                                        <div class="form-check form-check-info text-start ps-0">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
+                                            </label>
+                                        </div>
+                                        <div class="text-center">
+                                            <button id="registerSubmit" type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Zarejestruj</button>
+                                        </div>
+                                        <div class="text-center">
+                                            <a asp-controller="Home" asp-action="Index" class="btn bg-gradient-primary w-100 my-4 mb-2">Wroc do strony glownej</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                                    <p class="mb-2 text-sm mx-auto">
+                                        Masz już konto?
+                                        <a asp-page="./Login" class="text-primary text-gradient font-weight-bold">Zaloguj się</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!--   Core JS Files   -->
+    <script src="~/js/core/popper.min.js"></script>
+    <script src="~/js/core/bootstrap.min.js"></script>
+    <script src="~/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="~/js/plugins/smooth-scrollbar.min.js"></script>
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="~/js/material-dashboard.min.js?v=3.0.4"></script>
+</body>
+
+</html>
+
 
 <div class="row">
-    <div class="col-md-7">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating py-2">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Email"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-floating py-2">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.Password"></label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating py-2">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.ConfirmPassword"></label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-floating py-2">
-                    <input asp-for="Input.FirstName" class="form-control"  aria-required="true" />
-                    <label asp-for="Input.FirstName"></label>
-                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating py-2">
-                    <input asp-for="Input.LastName" class="form-control"  aria-required="true" />
-                    <label asp-for="Input.LastName"></label>
-                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-floating py-2">
-                <input asp-for="Input.StreetAddress" class="form-control"  aria-required="true" />
-                <label asp-for="Input.StreetAddress"></label>
-                <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-floating py-2">
-                    <input asp-for="Input.City" class="form-control"  aria-required="true" />
-                    <label asp-for="Input.City"></label>
-                    <span asp-validation-for="Input.City" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating py-2">
-                    <input asp-for="Input.PostalCode" class="form-control"  aria-required="true" />
-                    <label asp-for="Input.PostalCode"></label>
-                    <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-floating py-2">
-                <input asp-for="Input.CompanyName" class="form-control"  aria-required="true" />
-                <label asp-for="Input.CompanyName"></label>
-                <span asp-validation-for="Input.CompanyName" class="text-danger"></span>
-            </div>
-            <div class="form-floating py-2">
-                <input asp-for="Input.PhoneNumber" class="form-control"  aria-required="true" />
-                <label asp-for="Input.PhoneNumber"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </form>
-    </div>
     <div class="col-md-5 col-md-offset-2">
         <section>
             <h3>Use another service to register.</h3>

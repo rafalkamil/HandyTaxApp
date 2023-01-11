@@ -1,9 +1,11 @@
 ﻿using HandyTaxApp.Models;
 using HandyTaxApp.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HandyTaxApp.Controllers
 {
+    [Authorize]
     public class InvoiceController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

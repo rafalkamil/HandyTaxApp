@@ -54,46 +54,46 @@
                             <div class="card-body">
                                 <form role="form" class="text-start" method="post" asp-action="Upsert" enctype="multipart/form-data">
                                     <input asp-for="Id" hidden />
-                                    <div class="input-group input-group-outline my-3">
+                                    <div class="input-group input-group-outline my-3 is-focused">
                                         <label class="form-label">Numer faktury</label>
                                         <input asp-for="InvoiceNumber" class="form-control">
                                         <span asp-validation-for="InvoiceNumber" class="text-danger"></span>
                                     </div>
-                                    <div class="input-group input-group-outline my-3">
+                                    <div class="input-group input-group-outline my-3 is-focused">
                                         <label class="form-label">Wystawiajacy</label>
                                         <input asp-for="InvoiceContractorAddress" class="form-control">
                                         <span asp-validation-for="InvoiceContractor" class="text-danger"></span>
                                     </div>
-                                    <div class="input-group input-group-outline my-3">
+                                    <div class="input-group input-group-outline my-3 is-focused">
                                         <label class="form-label">Koszt netto</label>
-                                        <input asp-for="InvoiceSum" class="form-control" value="null">
+                                        <input asp-for="InvoiceSum" class="form-control">
                                         <span asp-validation-for="InvoiceSum" class="text-danger"></span>
                                     </div>
-                                    <div class="input-group input-group-outline my-3">
+                                    <div class="input-group input-group-outline my-3 is-focused">
                                         <label class="form-label">Koszt VAT</label>
-                                        <input asp-for="InvoiceSumVat" class="form-control" value="null">
+                                        <input asp-for="InvoiceSumVat" class="form-control">
                                         <span asp-validation-for="InvoiceSumVat" class="text-danger"></span>
                                     </div>
                                     
-                                    <div class="input-group input-group-outline my-3">
+                                    <div class="input-group input-group-outline my-3 is-focused">
                                         <label class="form-label">Rodzaj kosztu</label>
                                         <input asp-for="InvoiceDescription" class="form-control">
                                         <span asp-validation-for="InvoiceDescription" class="text-danger"></span>
                                     </div>
-                                    <div class="input-group input-group-outline my-3">
+                                    <div class="input-group input-group-outline my-3 is-focused">
                                         <label class="form-label">Kod pocztowy</label>
                                         <input asp-for="InvoiceContractorPostalCode" class="form-control">
                                         <span asp-validation-for="InvoiceContractorPostalCode" class="text-danger"></span>
                                     </div>
-                                    <div class="input-group input-group-outline my-3">
+                                    <div class="input-group input-group-outline my-3 is-focused">
                                         <label class="form-label">Adres</label>
                                         <input asp-for="InvoiceContractorAddress" class="form-control">
                                         <span asp-validation-for="InvoiceContractorAddress" class="text-danger"></span>
                                     </div>
-                                    <div class="input-group input-group-outline my-3">
+                                    <div class="input-group input-group-outline my-3 is-focused">
                                         <label asp-for="InvoiceDate">Data wystawienia</label>
                                     </div>
-                                    <div class="input-group input-group-outline my-3">
+                                    <div class="input-group input-group-outline my-3 is-focused">
                                         <input asp-for="InvoiceDate" class="form-control">
                                         <span asp-validation-for="InvoiceDate" class="text-danger"></span>
                                     </div>

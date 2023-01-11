@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@model dynamic
 
 <!DOCTYPE html>
 <html lang="en">
@@ -102,7 +103,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white " asp-controller="" asp-action="">
+                    <a class="nav-link text-white " asp-area="Identity" asp-page="/Account/Manage/Index">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">person</i>
@@ -162,7 +163,7 @@
                                 <div class="col-lg-6">
                                     <div class="d-flex flex-column h-100">
                                         @if (SignInManager.IsSignedIn(User)){
-                                            <h2 class="font-weight-bolder mb-0">@User.Identity?.Name!</h2>
+                                            <h2 class="font-weight-bolder mb-0">@User.Identity?.Name</h2>
                                         }
                                         else {
                                             <h4>Witaj użytkowniku</h4>
@@ -187,7 +188,7 @@
                                 </div>
                                 <hr class="dark horizontal my-0">
                                 <div class="card-footer p-3">
-                                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">Wystaw szybko fakture zawierajaca pojedyncza pozycje</p>
+                                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">Wystaw szybko fakture zawierajaca pojedyncza pozycje</span></p>
                                 </div>
                             </div>
 
@@ -202,7 +203,7 @@
                                 </div>
                                 <hr class="dark horizontal my-0">
                                 <div class="card-footer p-3">
-                                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">Wprowadz pozycje z faktury kosztowej oraz zalacz jej zdjecie</p>
+                                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">Wprowadz pozycje z faktury kosztowej oraz zalacz jej zdjecie</span></p>
                                 </div>
                             </div>
                         </div>                        
@@ -223,37 +224,38 @@
                                             <div class="table-responsive">
                                                 <table class="table align-items-center ">
                                                     <tbody>
-                                                        <tr>
-                                                            <td class="w-30">
-                                                                <div class="d-flex px-2 py-1 align-items-center">
-                                                                    <div>
-                                                                        <img src="./assets/img/icons/flags/US.png" alt="Country flag">
+                                                        @foreach (OutcomeInvoice outcomeInvoice in Model.outcomeInvoice){
+                                                            <tr>
+                                                                <td class="w-30">
+                                                                    <div class="d-flex px-2 py-1 align-items-center">
+                                                                        <div class="ms-4">
+                                                                            <p class="text-xs font-weight-bold mb-0 ">Klient:</p>
+                                                                            <h6 class="text-sm font-weight-normal mb-0 ">@outcomeInvoice.Client</h6>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="ms-4">
-                                                                        <p class="text-xs font-weight-bold mb-0 ">Country:</p>
-                                                                        <h6 class="text-sm font-weight-normal mb-0 ">United States</h6>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="text-center">
+                                                                        <p class="text-xs font-weight-bold mb-0 ">Opis:</p>
+                                                                        <h6 class="text-sm font-weight-normal mb-0 ">@outcomeInvoice.Description</h6>
                                                                     </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="text-center">
-                                                                    <p class="text-xs font-weight-bold mb-0 ">Sales:</p>
-                                                                    <h6 class="text-sm font-weight-normal mb-0 ">2500</h6>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="text-center">
-                                                                    <p class="text-xs font-weight-bold mb-0 ">Value:</p>
-                                                                    <h6 class="text-sm font-weight-normal mb-0 ">$230,900</h6>
-                                                                </div>
-                                                            </td>
-                                                            <td class="align-middle text-sm">
-                                                                <div class="col text-center">
-                                                                    <p class="text-xs font-weight-bold mb-0 ">Bounce:</p>
-                                                                    <h6 class="text-sm font-weight-normal mb-0 ">29.9%</h6>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="text-center">
+                                                                        <p class="text-xs font-weight-bold mb-0 ">Wartosc:</p>
+                                                                        <h6 class="text-sm font-weight-normal mb-0 ">@outcomeInvoice.TotalAmount</h6>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="align-middle text-sm">
+                                                                    <div class="col text-center">
+                                                                        <p class="text-xs font-weight-bold mb-0 ">Data:</p>
+                                                                        <h6 class="text-sm font-weight-normal mb-0 ">@outcomeInvoice.Date</h6>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                        }
+                                                        
                                                        
                                                     </tbody>
                                                 </table>
@@ -284,37 +286,38 @@
                                             <div class="table-responsive">
                                                 <table class="table align-items-center ">
                                                     <tbody>
-                                                        <tr>
-                                                            <td class="w-30">
-                                                                <div class="d-flex px-2 py-1 align-items-center">
-                                                                    <div>
-                                                                        <img src="./assets/img/icons/flags/US.png" alt="Country flag">
+                                                        @foreach (Invoice invoice in Model.invoice)
+                                                        {
+                                                            <tr>
+                                                                <td class="w-30">
+                                                                    <div class="d-flex px-2 py-1 align-items-center">
+                                                                        <div class="ms-4">
+                                                                            <p class="text-xs font-weight-bold mb-0 ">Wystawiajacy:</p>
+                                                                            <h6 class="text-sm font-weight-normal mb-0 ">@invoice.InvoiceContractor</h6>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="ms-4">
-                                                                        <p class="text-xs font-weight-bold mb-0 ">Country:</p>
-                                                                        <h6 class="text-sm font-weight-normal mb-0 ">United States</h6>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="text-center">
+                                                                        <p class="text-xs font-weight-bold mb-0 ">Opis:</p>
+                                                                        <h6 class="text-sm font-weight-normal mb-0 ">@invoice.InvoiceDescription</h6>
                                                                     </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="text-center">
-                                                                    <p class="text-xs font-weight-bold mb-0 ">Sales:</p>
-                                                                    <h6 class="text-sm font-weight-normal mb-0 ">2500</h6>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="text-center">
-                                                                    <p class="text-xs font-weight-bold mb-0 ">Value:</p>
-                                                                    <h6 class="text-sm font-weight-normal mb-0 ">$230,900</h6>
-                                                                </div>
-                                                            </td>
-                                                            <td class="align-middle text-sm">
-                                                                <div class="col text-center">
-                                                                    <p class="text-xs font-weight-bold mb-0 ">Bounce:</p>
-                                                                    <h6 class="text-sm font-weight-normal mb-0 ">29.9%</h6>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="text-center">
+                                                                        <p class="text-xs font-weight-bold mb-0 ">Wartosc:</p>
+                                                                        <h6 class="text-sm font-weight-normal mb-0 ">@invoice.InvoiceSum</h6>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="align-middle text-sm">
+                                                                    <div class="col text-center">
+                                                                        <p class="text-xs font-weight-bold mb-0 ">Data:</p>
+                                                                        <h6 class="text-sm font-weight-normal mb-0 ">@invoice.InvoiceDate</h6>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                        }
 
                                                     </tbody>
                                                 </table>

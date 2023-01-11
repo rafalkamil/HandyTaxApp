@@ -1,10 +1,13 @@
 ﻿using HandyTaxApp.Models;
 using HandyTaxApp.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Dynamic;
 
 namespace HandyTaxApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -18,7 +21,10 @@ namespace HandyTaxApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            dynamic homeModel = new ExpandoObject();
+            homeModel.outcomeInvoice = _unitOfWork.OutcomeInvoices.GetAll();
+            homeModel.invoice = _unitOfWork.Invoices.GetAll();
+            return View(homeModel);
         }
 
         public IActionResult Privacy()

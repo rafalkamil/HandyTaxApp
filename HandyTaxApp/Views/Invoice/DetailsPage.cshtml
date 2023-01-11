@@ -4,72 +4,188 @@
     ViewData["Title"] = "UpsertPage";
 }
 
-<form method="post" asp-action="Upsert" enctype="multipart/form-data">
-    <input asp-for="Id" hidden/>
-    <input asp-for="ImageURL" hidden/>
-    <div class="border p-3 mt-4">
-                
-        <div class="row pb-2">
-            <h2 class="text-primary">Faktura nr: @Model.InvoiceNumber</h2>
-            <hr />
-        </div>
-        <div class="row mb-3">
-        <div class="col-6">
-        <div class="row mb-3"> 
-                <label asp-for="InvoiceContractor">Wystawiajacy: </label>
-                <a>@Model.InvoiceContractor</a>
-        </div>
-        <div class="row mb-3">
-                <label asp-for="InvoiceDate">Data wystawienia: </label>
-                <a>@Model.InvoiceDate</a>
-        </div>
-        <div class="row mb-3">
-                <label asp-for="InvoiceSum">Koszt Netto: </label>
-                <a>@Model.InvoiceSum</a>
-        </div>
-        <div class="row mb-3">
-                <label asp-for="InvoiceSumVat">Koszt VAT: </label>
-                <a>@Model.InvoiceSumVat</a>           
-        </div>
+<!DOCTYPE html>
+<html lang="en">
 
-        <div class="row mb-3">
-                <label asp-for="InvoiceDescription">Rodzaj kosztu: </label>
-                <a>@Model.InvoiceDescription</a>
-        </div>
 
-        <div class="row mb-3">
-                <label asp-for="InvoiceContractorPostalCode">Kod pocztowy: </label>
-                <a>@Model.InvoiceContractorPostalCode</a>
-        </div>
-        <div class="row mb-3">
-                <label asp-for="InvoiceContractorAddress">Adres Wystawiajacego: </label>
-                <a>@Model.InvoiceContractorAddress</a>
-        </div>
-        </div>
-        <div class="col-6">
-               <img src="@Model.ImageURL" style="border-radius:5px;border:1px;width:50%"/>
-        </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-6">
-                    <a asp-controller="Invoice" asp-action="UpsertPage" asp-route-id="@Model.Id" class="btn btn-primary mx-2" style="width:100%">
-                    <img src="/lib/bootstrap/icons/gear.svg" alt="Bootstrap" width="20" height="20">
-                            Edit
-                    </a>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="~/img/favicon.png">
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Nucleo Icons -->
+    <link href="~/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="~/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS Files -->
+    <link id="pagestyle" href="~/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+</head>
+
+
+<body class="g-sidenav-show  bg-gray-200">
+    <form method="post" asp-action="Upsert" enctype="multipart/form-data">
+        <input asp-for="Id" hidden />
+        <input asp-for="ImageURL" hidden />
+        <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+            <!-- Navbar -->
+            <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+                <div class="container-fluid py-1 px-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">HandyTax App</a></li>
+                            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Faktury</li>
+                            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Detale</li>
+                        </ol>
+                    </nav>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+
+            <div class="container-fluid py-4">
+
+                <div class="row">
+                    <div class="col-lg-8 mt-4">
+                        <div class="card">
+                            <div class="col-xl-6 mb-xl-0 mb-4 pb-0 px-3 pt-4 p-3">
+                                <div class="card bg-transparent shadow-xl">
+                                    <div class="overflow-hidden position-relative border-radius-xl">
+                                        <span class="mask bg-gradient-dark opacity-10"></span>
+                                        <div class="card-body position-relative z-index-1 p-3">
+                                            <h5 class="text-white mt-4 mb-5 pb-2">Faktura nr: @Model.InvoiceNumber</h5>
+                                            <div class="d-flex">
+                                                <div class="d-flex">
+                                                    <div class="me-4">
+                                                        <p class="text-white text-sm opacity-8 mb-0">Data wystawienia</p>
+                                                        <h6 class="text-white mb-0">@Model.InvoiceDate</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-header pb-0 px-3">
+                                <h6 class="mb-0">Wystawiajacy</h6>
+                            </div>
+                            <div class="card-body pt-4 p-3">
+                                <ul class="list-group">
+                                    <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-3 text-sm">@Model.InvoiceContractor</h6>
+                                            <span class="mb-2 text-xs">Adres: <span class="text-dark ms-sm-2 font-weight-bold">@Model.InvoiceContractorAddress</span></span>
+                                            <span class="text-xs">Kod pocztowy: <span class="text-dark ms-sm-2 font-weight-bold">@Model.InvoiceContractorPostalCode</span></span>
+                                        </div>
+                                    </li>
+                                    <h6 class="mb-0">Produkt/Usluga</h6>
+                                    <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
+                                        <div class="d-flex flex-column">
+                                            <span class="mb-2 text-xs">Rodzaj kosztu: <span class="text-dark font-weight-bold ms-sm-2">@Model.InvoiceDescription</span></span>
+                                            <span class="text-xs"><img src="@Model.ImageURL" style="border-radius:5px;border:1px;width:50%" /></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="row">
+                                    <div class="col-xl-8">
+                                        <div class="row">
+                                            <div class="col-md-6 col-6">
+                                                <div class="card">
+                                                    <div class="card-body pt-0 p-3 text-center">
+                                                        <h6 class="text-center mb-0">Cena VAT</h6>
+                                                        <hr class="horizontal dark my-3">
+                                                        <h5 class="mb-0">@Model.InvoiceSumVat</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-6">
+                                                <div class="card">
+                                                    <div class="card-body pt-0 p-3 text-center">
+                                                        <h6 class="text-center mb-0">Cena NETTO</h6>
+                                                        <hr class="horizontal dark my-3">
+                                                        <h5 class="mb-0">@Model.InvoiceSum</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 mb-lg-0 mb-4">
+                    <div class="card mt-4">
+                        <div class="card-header pb-0 p-3">
+                            <div class="row">
+                                <div class="col-4 d-flex align-items-center">
+                                    <a class="btn bg-gradient-dark mb-0 mx-2" asp-controller="Invoice" asp-action="UpsertPage" asp-route-id="@Model.Id">Edycja</a>
+                                    <a class="btn bg-gradient-dark mb-0 mx-2" asp-controller="Invoice" asp-action="Index">Powrot</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-3">
+                            <div class="row">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="footer py-4  ">
+                    <div class="container-fluid">
+                        <div class="row align-items-center justify-content-lg-between">
+                            <div class="col-lg-6 mb-lg-0 mb-4">
+                                <div class="copyright text-center text-sm text-muted text-lg-start">
+                                    © <script>
+                                          document.write(new Date().getFullYear())
+                                    </script>,
+                                    Handy Tax
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                                    <li class="nav-item">
+                                        <a asp-area="" asp-controller="Home" asp-action="Privacy_policy" class="nav-link text-muted" target="_blank">Polityka prywatności</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-area="" asp-controller="Home" asp-action="Cookies" class="nav-link text-muted" target="_blank">Cookies</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
-            <div class="col-6">
-                    <a asp-controller="Invoice" asp-action="DeletePage" asp-route-id="@Model.Id" class="btn btn-danger mx-2" style="width:100%">
-                    <img src="/lib/bootstrap/icons/trash.svg" alt="Bootstrap" width="20" height="20">
-                            Delete
-                    </a>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12">
-                <a asp-controller="Invoice" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>
-            </div>
-        </div>
-    </div>
-</form>
+        </main>
+
+        <!--   Core JS Files   -->
+        <script src="~/js/core/popper.min.js"></script>
+        <script src="~/js/core/bootstrap.min.js"></script>
+        <script src="~/js/plugins/perfect-scrollbar.min.js"></script>
+        <script src="~/js/plugins/smooth-scrollbar.min.js"></script>
+        <script>
+            var win = navigator.platform.indexOf('Win') > -1;
+            if (win && document.querySelector('#sidenav-scrollbar')) {
+                var options = {
+                    damping: '0.5'
+                }
+                Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+            }
+        </script>
+        <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="~/js/material-dashboard.min.js?v=3.0.4"></script>
+    </form>
+</body>
+</html>           
+
+
 
                 

@@ -1,9 +1,11 @@
 ﻿using HandyTaxApp.Models;
 using HandyTaxApp.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HandyTaxApp.Controllers
 {
+    [Authorize]
     public class OutcomeInvoiceController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -51,9 +53,10 @@ namespace HandyTaxApp.Controllers
             if (ModelState.IsValid)
             {
                 var totalAmount = Object.UnitPrice * Object.Quantity;
-
                 Object.TotalAmount = totalAmount;
-                Object.TotalAmountVAT = (int)(totalAmount * 1.23);
+
+                var totalAmountVAT = (int)(totalAmount * 1.23);
+                Object.TotalAmountVAT = totalAmountVAT;
                 
                 if (Object.Id == 0)
                 {
