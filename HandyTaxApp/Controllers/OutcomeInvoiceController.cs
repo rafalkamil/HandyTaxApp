@@ -2,6 +2,7 @@
 using HandyTaxApp.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace HandyTaxApp.Controllers
 {
@@ -14,6 +15,7 @@ namespace HandyTaxApp.Controllers
         {
             _unitOfWork = unitOfWork;   
         }
+
         public IActionResult Index()
         {
             IEnumerable<OutcomeInvoice> ObjectOutcomeInvoiceList = _unitOfWork.OutcomeInvoices.GetAll();
@@ -49,9 +51,14 @@ namespace HandyTaxApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Upsert(OutcomeInvoice Object)
         {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            Object.ApplicationUserId = claim.Value;
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
+                
+
                 var totalAmount = Object.UnitPrice * Object.Quantity;
                 Object.TotalAmount = totalAmount;
 
@@ -60,7 +67,7 @@ namespace HandyTaxApp.Controllers
                 
                 if (Object.Id == 0)
                 {
-                    _unitOfWork.OutcomeInvoices.Add(Object);
+                    _unitOfWork.OutcomeInvoices.Add(Object); 
                 }
                 else
                 {
@@ -69,8 +76,8 @@ namespace HandyTaxApp.Controllers
                 _unitOfWork.Save();
 
                 return RedirectToAction("Index");
-            }
-            return RedirectToAction("Index");
+            //}
+            //return RedirectToAction("Index");
         }
 
         public IActionResult DeletePage(int? Id)

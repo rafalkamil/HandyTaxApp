@@ -27,27 +27,7 @@ namespace HandyTaxApp.Controllers
             return View(homeModel);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult Privacy_policy()
-        {
-            return View();
-        }
-
-        public IActionResult Agent_HMRC()
-        {
-            return View();
-        }
-
-        public IActionResult AML()
-        {
-            return View();
-        }
-
-        public IActionResult About()
         {
             return View();
         }

@@ -4,6 +4,7 @@
     {
         IInvoiceRepository Invoices { get; }
         IOutcomeInvoiceRepository OutcomeInvoices { get; }
+        IApplicationUserRepository ApplicationUser { get; }
         void Save();
     }
 }

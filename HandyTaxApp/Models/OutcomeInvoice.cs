@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HandyTaxApp.Models
 {
@@ -6,6 +9,10 @@ namespace HandyTaxApp.Models
     {
         [Key]
         public int Id { get; set; }
+        public string ApplicationUserId { get; set; }
+        [ForeignKey("ApplicationUserId")]
+        [ValidateNever]
+        public ApplicationUser ApplicationUser { get; set; }
         public int? InvoiceNumber { get; set; }
         public string Client { get; set; }
         public string ClientNumber { get; set; }

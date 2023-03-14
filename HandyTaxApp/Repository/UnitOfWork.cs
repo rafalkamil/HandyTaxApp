@@ -18,6 +18,7 @@ namespace HandyTaxApp.Repository
         
         public IInvoiceRepository Invoices { get; private set; }
         public IOutcomeInvoiceRepository OutcomeInvoices { get; private set; }
+        public IApplicationUserRepository ApplicationUser { get; private set; }
         public void Save()
         {
             _db.SaveChanges();
